@@ -2,7 +2,7 @@ import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-export default function () {
+export default function FetchDataUsingMap() {
 
     useEffect(()=>{
         getData();
@@ -14,16 +14,18 @@ export default function () {
       .get(url)
       .then(res => {
         setPostData(res.data.posts);
-        // console.log(res.data.posts);
+        console.log(res.data.posts);
       })
       .catch(err => console.log(err));
   };
   return (
     <ScrollView>
         {
+            
     postData && (
         
         postData.map((value, index)=>(
+            
             <View key={value.id} style={styles.container}>
                 <View>
                     <Text style={styles.text}>

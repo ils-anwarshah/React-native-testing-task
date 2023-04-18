@@ -1,9 +1,16 @@
 import {useState, useEffect} from 'react';
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView, FlatList} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, FlatList,ActivityIndicator} from 'react-native';
 import axios from 'axios';
 
 export default function Quates() {
+  useEffect(()=>{
+    <ActivityIndicator animating={true} size='large' />
+    setTimeout(()=>{
+      
+    },2000)
+  },[])
+  
   const [quatesData, setQuatesData] = useState([]);
   useEffect(() => {
     let url = 'https://dummyjson.com/quotes';

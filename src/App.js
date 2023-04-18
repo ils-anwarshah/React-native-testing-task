@@ -3,17 +3,21 @@ import { SafeAreaView, View, StatusBar, StyleSheet } from 'react-native';
 import Quates from './component/quatesPage';
 import CounterPage from './component/CounterPage';
 import FetchDataUsingMap from './component/FetchDataUsingMap';
+import Login from './component/Login';
+import Register from './component/Register';
+import NavigationCont from './component/Navigation/NavigationCont';
 
 export default function App() {
   return (
-    <View>
-        <SafeAreaView>
-          <StatusBar backgroundColor={'skyblue'}/>
-           {/* <CounterPage />
-           <Quates/> */}
-            <FetchDataUsingMap/>
-        </SafeAreaView>
-    </View>
+    <NavigationCont>      
+      <StatusBar backgroundColor={'skyblue'}/>
+       {/* <CounterPage />
+       <Quates/> */}
+        {/* <FetchDataUsingMap/> */}
+        <Login/>
+        {/* <Register/> */}
+    </NavigationCont>
+   
   )
 }
 const style = StyleSheet.create({
