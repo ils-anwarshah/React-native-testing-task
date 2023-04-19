@@ -1,10 +1,25 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
 import React,{useState} from 'react'
 
-export default function Register() {
+export default function Register({navigation}) {
     const [email, setEmail] = useState('');
     const [name,setName] = useState('')
   const [password, setPassword] = useState('');
+
+  const  PostData= async()=>{
+    let url = 'http://10.0.2.2:3000/users'
+    const requestOptions = {
+     method: 'POST',
+     headers: { 
+         'Content-Type': 'application/json',
+        
+     },
+     body: JSON.stringify({ name:name, email:email, password:password })
+ };
+    let result = await fetch(url,requestOptions)
+    navigation.navigate('welcome',{name})
+    
+   }
   return (
     <View>
       <View style={styles.InputContainer}>
@@ -17,7 +32,7 @@ export default function Register() {
           value={password} onChangeText={e=>setPassword(e)}></TextInput>
       </View>
       <View style={styles.TouchableOpacityContainer}>
-      <TouchableOpacity style={styles.buttonContainer} >
+      <TouchableOpacity style={styles.buttonContainer} onPress={PostData}>
         <View ><Text style={styles.button}>Register</Text></View>
       </TouchableOpacity>
       </View>

@@ -1,9 +1,11 @@
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, ActivityIndicator} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-export default function FetchDataUsingMap() {
-
+export default function FetchDataUsingMap(props) {
+    const [isLoading, setIsLoading] = useState(true);
+    const {name} = props.route.params
+ 
     useEffect(()=>{
         getData();
     },[])
@@ -14,7 +16,10 @@ export default function FetchDataUsingMap() {
       .get(url)
       .then(res => {
         setPostData(res.data.posts);
-        console.log(res.data.posts);
+        setTimeout(()=>{
+            setIsLoading(false)
+        },1500)
+        // console.log(res.data.posts);
       })
       .catch(err => console.log(err));
   };
@@ -23,6 +28,17 @@ export default function FetchDataUsingMap() {
         {
             
     postData && (
+        isLoading ? (
+        <View>
+            <ActivityIndicator
+              animating={true}
+              size={'large'}
+              style={styles.activitiveLoading}
+              color={'orange'}
+            />
+            <Text style={{textAlign:'center',fontSize:20}}>Welcome : {name}</Text>
+            </View>
+            ):(
         
         postData.map((value, index)=>(
             
@@ -39,7 +55,7 @@ export default function FetchDataUsingMap() {
                 </View>
             </View>
             
-        ))
+        )))
     )}
     </ScrollView>
   )
@@ -55,7 +71,11 @@ const styles = StyleSheet.create({
     },
     container:{
         width:'100%',
-        height:200
+        height:200,
+        backgroundColor:"#fff",
+        shadowColor:'black',
+        elevation:2,
+        marginBottom:10
     },
     box:{
         width:"100%",

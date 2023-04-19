@@ -1,19 +1,23 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image, Button } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../Login';
 import Register from '../Register';
-import { HeaderStyleInterpolators } from '@react-navigation/stack';
-import { forFade } from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/HeaderStyleInterpolators';
+import { useState } from 'react';
 import Quates from '../quatesPage';
+import ModalBox from '../ModalBox';
+import FetchDataUsingMap from '../FetchDataUsingMap';
 
 const Stack = createNativeStackNavigator();
 
+
 export default function StackNavigator() {
+  const [modalVisiblity,setModalVisiblity] = useState(false);
   return (
     <Stack.Navigator initialRouteName='login'>
         <Stack.Screen options={{ title:'Login Page', headerTintColor:'orange',} } name="login" component={Login} />
         <Stack.Screen name="register" component={Register} options={{title:'Back',headerTintColor:'orange'}}/>
-        <Stack.Screen name='home'component={Quates} options={{title:'Home Page',headerBackVisible:false,headerTintColor:'orange',headerTitleAlign:'center'}}/>
+        <Stack.Screen name='home'component={Quates} options={{title:'Home Page',headerBackVisible:false,headerTintColor:'orange',headerTitleAlign:'center', headerRight:()=>(<Button title='Cart' color={'orange'} onPress={()=>setModalVisiblity(true)}></Button>)}}/>
+        <Stack.Screen name='welcome' component={FetchDataUsingMap} options={{title:'Home', headerBackVisible:false,headerTintColor:'orange'}}/>
     </Stack.Navigator>
   )
 }
