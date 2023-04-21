@@ -6,6 +6,8 @@ import FetchDataUsingMap from './component/FetchDataUsingMap';
 import Login from './component/Login';
 import Register from './component/Register';
 import NavigationCont from './component/Navigation/NavigationCont';
+import DrawerContainer from './component/DrawerContainer';
+import 'react-native-gesture-handler'
 
 export default function App() {
   return (
@@ -17,6 +19,7 @@ export default function App() {
         <Login/>
         {/* <Register/> */}
     </NavigationCont>
+    
    
   )
 }

@@ -8,10 +8,12 @@ import {
   FlatList,
   ActivityIndicator,
   Button,
+  Image,
+  TouchableOpacity
 } from 'react-native';
 import axios from 'axios';
 import ModalBox from './ModalBox';
-
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 export default function Quates({navigation}) {
   const [quatesData, setQuatesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,8 +29,21 @@ export default function Quates({navigation}) {
       
   }
 
+  const DrawerIconAction=()=>{
+    return(
+    <View>
+      <TouchableOpacity  style={{marginLeft:5,height:30,width:30}} onPress={()=>{navigation.openDrawer();}}>
+      <Image source={{uri:"https://cdn-icons-png.flaticon.com/512/7216/7216128.png"}} style={{marginLeft:5,height:30,width:30}} />
+      </TouchableOpacity>
+    </View>
+    )
+    
+  }
 useEffect(()=>{
   navigation.setOptions({
+    headerLeft:()=>(
+      <DrawerIconAction/>
+    ),
     headerRight:()=>(
       <Button title="Cart" onPress={ShowMOdal}/>
     )

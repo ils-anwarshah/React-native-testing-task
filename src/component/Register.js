@@ -17,7 +17,7 @@ export default function Register({navigation}) {
      body: JSON.stringify({ name:name, email:email, password:password })
  };
     let result = await fetch(url,requestOptions)
-    navigation.navigate('welcome',{name})
+    navigation.navigate('drawercontainer',{name})
     
    }
   return (

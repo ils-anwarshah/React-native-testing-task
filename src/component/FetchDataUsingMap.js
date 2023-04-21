@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export default function FetchDataUsingMap(props) {
     const [isLoading, setIsLoading] = useState(true);
-    const {name} = props.route.params
  
     useEffect(()=>{
         getData();
@@ -16,9 +15,8 @@ export default function FetchDataUsingMap(props) {
       .get(url)
       .then(res => {
         setPostData(res.data.posts);
-        setTimeout(()=>{
-            setIsLoading(false)
-        },1500)
+        setIsLoading(false)
+       
         // console.log(res.data.posts);
       })
       .catch(err => console.log(err));
@@ -29,15 +27,13 @@ export default function FetchDataUsingMap(props) {
             
     postData && (
         isLoading ? (
-        <View>
             <ActivityIndicator
               animating={true}
               size={'large'}
               style={styles.activitiveLoading}
               color={'orange'}
             />
-            <Text style={{textAlign:'center',fontSize:20}}>Welcome : {name}</Text>
-            </View>
+           
             ):(
         
         postData.map((value, index)=>(

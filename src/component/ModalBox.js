@@ -8,7 +8,7 @@ export default function ModalBox(props) {
     }
     // console.log('props',props)
   return (
-      <Modal style={styles.Modal} transparent={true} presentationStyle='overFullScreen' animationType='slide' visible={props.visiblity}>
+      <Modal style={styles.Modal} transparent={true} presentationStyle='overFullScreen' animationType='fade' visible={props.visiblity}>
         <TouchableOpacity style={styles.closeButton} onPress={HideModal}>
         <View ><Text style={{fontSize:20}}>X</Text></View>
         </TouchableOpacity>
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
         position:'absolute',
         justifyContent:'center',
         alignItems:'center',
+        borderColor:'orange',
+        borderWidth:1,
         top:200,
         left:40,
         backgroundColor:'white',

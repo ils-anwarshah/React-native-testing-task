@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
   for (let i=0;i<userData.length;i++){
     if (email === userData[i].email && password === userData[i].password)
     {
-      navigation.navigate('home',{email})
+      navigation.navigate('drawercontainer',{email})
       console.log(`welcome ${userData[i].name}`);
     }
     else{
@@ -24,9 +24,6 @@ export default function Login({ navigation }) {
       break;
     }
   }
-    
-   
-   
   }
   return (   
     <View>

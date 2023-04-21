@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Quates from '../quatesPage';
 import ModalBox from '../ModalBox';
 import FetchDataUsingMap from '../FetchDataUsingMap';
+import DrawerContainer from '../DrawerContainer';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,8 +17,8 @@ export default function StackNavigator() {
     <Stack.Navigator initialRouteName='login'>
         <Stack.Screen options={{ title:'Login Page', headerTintColor:'orange',} } name="login" component={Login} />
         <Stack.Screen name="register" component={Register} options={{title:'Back',headerTintColor:'orange'}}/>
-        <Stack.Screen name='home'component={Quates} options={{title:'Home Page',headerBackVisible:false,headerTintColor:'orange',headerTitleAlign:'center', headerRight:()=>(<Button title='Cart' color={'orange'} onPress={()=>setModalVisiblity(true)}></Button>)}}/>
-        <Stack.Screen name='welcome' component={FetchDataUsingMap} options={{title:'Home', headerBackVisible:false,headerTintColor:'orange'}}/>
+        {/* <Stack.Screen name='home'component={Quates} options={{title:'Home Page',headerBackVisible:false,headerTintColor:'orange',headerTitleAlign:'center', headerRight:()=>(<Button title='Cart' color={'orange'} onPress={()=>setModalVisiblity(true)}></Button>)}}/> */}
+        <Stack.Screen name='drawercontainer' component={DrawerContainer} options={{headerShown:false}}/>
     </Stack.Navigator>
   )
 }
