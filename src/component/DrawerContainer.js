@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 export default function DrawerContainer() {
   return (
 
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator initialRouteName="Home" screenOptions={{drawerActiveBackgroundColor:'orange',drawerActiveTintColor:'black'}}>
         <Drawer.Screen name="Home" component={TabContainer} options={{headerShown:false}}/>
         <Drawer.Screen name="profile" component={Profile} options={{headerTintColor:"orange"}}/>
         <Drawer.Screen name="Posts" component={FetchDataUsingMap} options={{headerTintColor:"orange"}}/>

@@ -45,7 +45,8 @@ useEffect(()=>{
       <DrawerIconAction/>
     ),
     headerRight:()=>(
-      <Button title="Cart" onPress={ShowMOdal}/>
+      // <View style={{marginRight:5}}><Button title="Cart" onPress={ShowMOdal}/></View>
+      <TouchableOpacity onPress={ShowMOdal} style={{marginRight:10}}><Image source={{uri:"https://cdn-icons-png.flaticon.com/512/3239/3239958.png"}} style={{width:25,height:25}}/></TouchableOpacity>
     )
   })
 },[navigation,setVisiblity])
@@ -100,7 +101,9 @@ useEffect(()=>{
 }
 const styles = StyleSheet.create({
   container:{
-    padding:10
+    paddingLeft:10,
+    paddingRight:10,
+    paddingTop:10
   },
   text: {
     color: 'black',
