@@ -60,21 +60,21 @@ const styles = StyleSheet.create({
     text:{
         fontSize:20,
         color:'black',
-        marginBottom:20
+        marginBottom:20,
+        padding:10
     },
     description:{
-        
+        padding:10
     },
     container:{
-        width:'100%',
-        height:200,
+        flex:1,
         backgroundColor:"#fff",
         shadowColor:'black',
         elevation:2,
-        marginBottom:10
+        marginBottom:10,
+        margin:10    
     },
     box:{
         width:"100%",
-        height:100
     }
 })

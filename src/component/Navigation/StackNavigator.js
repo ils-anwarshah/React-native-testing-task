@@ -7,6 +7,7 @@ import Quates from '../quatesPage';
 import ModalBox from '../ModalBox';
 import FetchDataUsingMap from '../FetchDataUsingMap';
 import DrawerContainer from '../DrawerContainer';
+import ShoppingCart from '../ShoppingCart';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function StackNavigator() {
         <Stack.Screen name="register" component={Register} options={{title:'Back',headerTintColor:'orange'}}/>
         {/* <Stack.Screen name='home'component={Quates} options={{title:'Home Page',headerBackVisible:false,headerTintColor:'orange',headerTitleAlign:'center', headerRight:()=>(<Button title='Cart' color={'orange'} onPress={()=>setModalVisiblity(true)}></Button>)}}/> */}
         <Stack.Screen name='drawercontainer' component={DrawerContainer} options={{headerShown:false}}/>
+        <Stack.Screen name="shoppingcart" component={ShoppingCart} options={{headerSearchBarOptions:true,title:'Cart'}}/>
     </Stack.Navigator>
   )
 }

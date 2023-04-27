@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput,ImageBackground } from 'react-native'
 import React,{useState} from 'react'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Register({navigation}) {
     const [email, setEmail] = useState('');
     const [name,setName] = useState('')
@@ -18,10 +18,11 @@ export default function Register({navigation}) {
  };
     let result = await fetch(url,requestOptions)
     navigation.navigate('drawercontainer',{name})
-    
+    AsyncStorage.setItem('user','true')
    }
   return (
     <View>
+      <ImageBackground source={{uri:'https://cdn.pixabay.com/photo/2022/06/29/19/07/colored-7292420__340.jpg'}} style={{height:'100%'}} blurRadius={80}>
       <View style={styles.InputContainer}>
       <TextInput placeholder="Name" value={name} style={styles.InputBox} onChangeText={e=>setName(e)}></TextInput>
         <TextInput placeholder="email" value={email} style={styles.InputBox} onChangeText={e=>setEmail(e)}></TextInput>
@@ -36,6 +37,7 @@ export default function Register({navigation}) {
         <View ><Text style={styles.button}>Register</Text></View>
       </TouchableOpacity>
       </View>
+      </ImageBackground>
     </View>
   )
 }
@@ -48,8 +50,8 @@ const styles = StyleSheet.create({
     },
     InputBox:{
         marginTop:20,
-        borderColor:'grey',
-        borderWidth:1,
+        borderColor:'white',
+        borderWidth:2,
         borderRadius:5
     },
     button:{
