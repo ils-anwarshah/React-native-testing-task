@@ -91,6 +91,7 @@ useEffect(()=>{
             key={item => item.id}
             data={quatesData}
             renderItem={renderItem}
+            showsVerticalScrollIndicator={false}
           />
         </View>
         { visiblity ?

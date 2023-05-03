@@ -18,6 +18,8 @@ export default function Register({navigation}) {
  };
     let result = await fetch(url,requestOptions)
     navigation.navigate('drawercontainer',{name})
+    AsyncStorage.setItem('name',name)
+    AsyncStorage.setItem('email',email)
     AsyncStorage.setItem('user','true')
    }
   return (

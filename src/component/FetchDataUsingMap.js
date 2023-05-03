@@ -22,7 +22,7 @@ export default function FetchDataUsingMap(props) {
       .catch(err => console.log(err));
   };
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
         {
             
     postData && (

@@ -8,9 +8,17 @@ import {
   Button,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
+import { Skeleton } from '@rneui/base';
 
 export default function Cart({navigation}) {
   const [bedgecount,setBedgeCount] = useState(0)
+  const [isloading,setIsLoading] = useState(true)
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setIsLoading(false)
+    },1500)
+  },[])
   const CartData = [
     {
       id: 0,
@@ -106,7 +114,13 @@ export default function Cart({navigation}) {
     </View>
   );
   return (
-    <ScrollView style={{flex: 1}}>
+    isloading && 
+      isloading ?<><Skeleton width={'95%'} height={550} style={{alignSelf:'center'}}/>
+      <Skeleton width={'95%'} height={550} style={{alignSelf:'center',margin:25}}/>
+      </>
+
+      :  
+      <ScrollView style={{flex: 1}}>
       {CartData &&
         CartData.map(item => (
           <Items
