@@ -62,12 +62,13 @@ const DrawerContents=(props)=>{
 
   return (
 
-      <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <DrawerContents {...props} />} screenOptions={{drawerActiveBackgroundColor:'orange',drawerActiveTintColor:'black',headerTintColor:"orange"}}>
+      <Drawer.Navigator initialRouteName="Shopping" drawerContent={(props) => <DrawerContents {...props} />} screenOptions={{drawerActiveBackgroundColor:'orange',drawerActiveTintColor:'black',headerTintColor:"orange"}}>
+        <Drawer.Screen name="Shopping" component={Cart} options={{title:"Shopping"}}/>
         <Drawer.Screen name="Home" component={TabContainer} options={{headerShown:false}}/>
         <Drawer.Screen name="profile" component={Profile} />
         <Drawer.Screen name="Posts" component={FetchDataUsingMap} />
         <Drawer.Screen name="setting" component={Setting} />
-        <Drawer.Screen name="Shopping" component={Cart} options={{title:"Shopping"}}/>
+        
       </Drawer.Navigator>
   );
 }

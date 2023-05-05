@@ -49,11 +49,18 @@ const dispatch = useDispatch()
   );
   return (
       cartData.length > 0 ? 
+      <>
       <ScrollView>
       {
       cartData.map((item,index)=>(<Items key={index} title={item.title} description={item.description} url={item.url} price={item.price} item={item}/>))
       }
-    </ScrollView> :      
+      </ScrollView> 
+      <View style={{backgroundColor:'white'}}>
+        <Button title={'Check Out'} buttonStyle={{backgroundColor:'orange', padding:20,margin:10, }}/>
+      </View>
+      </>
+      
+    :      
       <View style={styles.container}> 
       <Text>You are rich! Nothing to buy, Huh ?:) </Text>
     </View> 
