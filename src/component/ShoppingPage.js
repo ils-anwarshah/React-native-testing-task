@@ -9,75 +9,28 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import { Skeleton } from '@rneui/base';
+import {useSelector,useDispatch} from 'react-redux';
+import ShoppingItem from '../Data/ShoppingItem';
+
 
 export default function Cart({navigation}) {
+  const dispatch = useDispatch();
   const [bedgecount,setBedgeCount] = useState(0)
   const [isloading,setIsLoading] = useState(true)
+  const Data  = useSelector(item => item.cartcount)
+  const CartData = useSelector(item=>item)
+  // console.log(CartData.cartData)
 
+  const UpdateCartcount=(title,url,description,price)=>{
+    // console.log(title,url,description,url)
+    let items = {'title':title,'url':url,'description':description,'price':price}
+    dispatch({type:"ADD_TO_CART",payload:items})
+  }
   useEffect(()=>{
     setTimeout(()=>{
       setIsLoading(false)
     },1500)
   },[])
-  const CartData = [
-    {
-      id: 0,
-      name: 'iPhone 12',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile ',
-      imageUrl: 'https://m.media-amazon.com/images/I/711wsjBtWeL._SX522_.jpg',
-      price: 799,
-    },
-    {
-      id: 1,
-      name: 'iPhone 14 Pro Max',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile buyers. Since the iPhone has outperformed every element of the mobile industry, ',
-      imageUrl: 'https://m.media-amazon.com/images/I/61XO4bORHUL._SX522_.jpg',
-      price: 1299,
-    },
-    {
-      id: 2,
-      name: 'Macbook',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile buyers. Since the iPhone has outperformed every element of the mobile industry, ',
-      imageUrl:
-        'https://m.media-amazon.com/images/I/71TPda7cwUL._SL1500_.jpg',
-      price: 1499,
-    },
-    {
-      id: 3,
-      name: 'Macbook Air',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile buyers. Since the iPhone has outperformed every element of the mobile industry, ',
-      imageUrl: 'https://m.media-amazon.com/images/I/71eXNIDUGjL._SL1500_.jpg',
-      price: 999,
-    },
-    {
-      id: 4,
-      name: 'Macbook Air 2013',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile buyers. Since the iPhone has outperformed every element of the mobile industry, ',
-      imageUrl: 'https://m.media-amazon.com/images/I/711wsjBtWeL._SX522_.jpg',
-      price: 599,
-    },
-    {
-      id: 5,
-      name: 'Macbook Air 2012',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile buyers. Since the iPhone has outperformed every element of the mobile industry, ',
-      imageUrl: 'https://m.media-amazon.com/images/I/711wsjBtWeL._SX522_.jpg',
-      price: 499,
-    },
-    {
-      id: 6,
-      name: 'iPhone 14 Pro Max',
-      description:
-        'The fact that Apple has consistently been at the cutting edge of innovation makes it very well-liked and in high demand among mobile buyers. Since the iPhone has outperformed every element of the mobile industry, ',
-      imageUrl: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-unselect-gallery-2-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663790290203',
-      price: 1299,
-    },
-  ];
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -88,12 +41,12 @@ export default function Cart({navigation}) {
             <Text style={styles.navigationRightButtonText}>Cart</Text>
           </TouchableOpacity>
           <View style={styles.NotificationBedge}>
-            <Text style={{textAlign: 'center'}}>{bedgecount}</Text>
+            <Text style={{textAlign: 'center'}}>{Data.item_count}</Text>
           </View>
         </View>
       ),
     });
-  }, [bedgecount]);
+  }, [Data]);
   const Items = ({title, url, description, price}) => (
     <View style={{width: '100%', backgroundColor: 'white', marginBottom: 30}}>
       <View>
@@ -108,7 +61,7 @@ export default function Cart({navigation}) {
         <Text style={{textAlign: 'center'}}>{description}</Text>
       </View>
       <Text style={styles.price}>{price}$</Text>
-      <TouchableOpacity onPress={()=>setBedgeCount(bedgecount+1)} style={styles.buttonContainer}>
+      <TouchableOpacity onPress={()=>UpdateCartcount(title, url, description, price)} style={styles.buttonContainer}>
         <Text>Add to cart</Text>
       </TouchableOpacity>
     </View>
@@ -121,8 +74,8 @@ export default function Cart({navigation}) {
 
       :  
       <ScrollView style={{flex: 1}}>
-      {CartData &&
-        CartData.map(item => (
+      {ShoppingItem &&
+        ShoppingItem.map(item => (
           <Items
             key={item.id}
             title={item.name}

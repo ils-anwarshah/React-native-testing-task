@@ -8,9 +8,12 @@ import Register from './component/Register';
 import NavigationCont from './component/Navigation/NavigationCont';
 import DrawerContainer from './component/DrawerContainer';
 import 'react-native-gesture-handler'
+import store from './redux/store/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationCont>      
       <StatusBar backgroundColor={'skyblue'}/>
        {/* <CounterPage />
@@ -19,6 +22,7 @@ export default function App() {
         <Login/>
         {/* <Register/> */}
     </NavigationCont>
+    </Provider>
     
    
   )
