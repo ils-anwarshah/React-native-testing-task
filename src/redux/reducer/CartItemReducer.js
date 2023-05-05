@@ -10,7 +10,7 @@ export default function CartItemReducer(state = initialState,action){
             ]
         case "REMOVE_TO_CART":
             let result = state.filter((item)=>{
-                return item.title != action.payload.title
+                return item.index != action.payload.index
             })
             return result
         default:

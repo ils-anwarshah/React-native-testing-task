@@ -18,12 +18,12 @@ export default function Cart({navigation}) {
   const [bedgecount,setBedgeCount] = useState(0)
   const [isloading,setIsLoading] = useState(true)
   const Data  = useSelector(item => item.cartcount)
-  const CartData = useSelector(item=>item)
-  // console.log(CartData.cartData)
+  const CartData = useSelector(item=>item.cartData)
+  
 
-  const UpdateCartcount=(title,url,description,price)=>{
+  const UpdateCartcount=(id,title,url,description,price,index)=>{
     // console.log(title,url,description,url)
-    let items = {'title':title,'url':url,'description':description,'price':price}
+    let items = {'index':index,'id':id ,'title':title,'url':url,'description':description,'price':price}
     dispatch({type:"ADD_TO_CART",payload:items})
   }
   useEffect(()=>{
@@ -41,13 +41,13 @@ export default function Cart({navigation}) {
             <Text style={styles.navigationRightButtonText}>Cart</Text>
           </TouchableOpacity>
           <View style={styles.NotificationBedge}>
-            <Text style={{textAlign: 'center'}}>{Data.item_count}</Text>
+            <Text style={{textAlign: 'center'}}>{CartData.length}</Text>
           </View>
         </View>
       ),
     });
   }, [Data]);
-  const Items = ({title, url, description, price}) => (
+  const Items = ({id, title, url, description, price,index}) => (
     <View style={{width: '100%', backgroundColor: 'white', marginBottom: 30}}>
       <View>
         <Image source={{uri: url}} style={{...styles.Image}}></Image>
@@ -61,7 +61,7 @@ export default function Cart({navigation}) {
         <Text style={{textAlign: 'center'}}>{description}</Text>
       </View>
       <Text style={styles.price}>{price}$</Text>
-      <TouchableOpacity onPress={()=>UpdateCartcount(title, url, description, price)} style={styles.buttonContainer}>
+      <TouchableOpacity onPress={()=>UpdateCartcount(id, title, url, description, price,index)} style={styles.buttonContainer}>
         <Text>Add to cart</Text>
       </TouchableOpacity>
     </View>
@@ -75,9 +75,11 @@ export default function Cart({navigation}) {
       :  
       <ScrollView style={{flex: 1}}>
       {ShoppingItem &&
-        ShoppingItem.map(item => (
+        ShoppingItem.map((item,index) => (
           <Items
+            index ={index}
             key={item.id}
+            id={item.id}
             title={item.name}
             url={item.imageUrl}
             description={item.description}
