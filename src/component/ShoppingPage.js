@@ -21,9 +21,9 @@ export default function Cart({navigation}) {
   const CartData = useSelector(item=>item.cartData)
   
 
-  const UpdateCartcount=(id,title,url,description,price,index)=>{
+  const UpdateCartcount=(id,title,url,description,price,index,quantity)=>{
     // console.log(title,url,description,url)
-    let items = {'index':index,'id':id ,'title':title,'url':url,'description':description,'price':price}
+    let items = {'index':index,'id':id ,'title':title,'url':url,'description':description,'price':price,'quantity':quantity}
     dispatch({type:"ADD_TO_CART",payload:items})
   }
   useEffect(()=>{
@@ -47,7 +47,7 @@ export default function Cart({navigation}) {
       ),
     });
   }, [Data]);
-  const Items = ({id, title, url, description, price,index}) => (
+  const Items = ({id, title, url, description, price,index,quantity}) => (
     <View style={{width: '100%', backgroundColor: 'white', marginBottom: 30}}>
       <View>
         <Image source={{uri: url}} style={{...styles.Image}}></Image>
@@ -61,7 +61,7 @@ export default function Cart({navigation}) {
         <Text style={{textAlign: 'center'}}>{description}</Text>
       </View>
       <Text style={styles.price}>{price}$</Text>
-      <TouchableOpacity onPress={()=>UpdateCartcount(id, title, url, description, price,index)} style={styles.buttonContainer}>
+      <TouchableOpacity onPress={()=>UpdateCartcount(id, title, url, description, price,index,quantity)} style={styles.buttonContainer}>
         <Text>Add to cart</Text>
       </TouchableOpacity>
     </View>
@@ -79,6 +79,7 @@ export default function Cart({navigation}) {
           <Items
             index ={index}
             key={item.id}
+            quantity ={item.quantity}
             id={item.id}
             title={item.name}
             url={item.imageUrl}

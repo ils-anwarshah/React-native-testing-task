@@ -9,7 +9,8 @@ export default function ShoppingCart() {
   
   const CartItems = useSelector((items)=>items.cartData)
   const [cartData,setCartData] = useState(CartItems)
-  // console.log(cartData)
+  const [totalPrice,setTotalPrice] = useState(0)
+  //  console.log(cartData)
  
 const dispatch = useDispatch()
   
@@ -17,9 +18,18 @@ const dispatch = useDispatch()
     // console.log("data",item);
     dispatch({type:'REMOVE_TO_CART', payload:item})
   }
+const UpdateTotalPrice=()=>{
+  let totalPrice = 0;
+  cartData.map((item)=>{
+    totalPrice += item.price * item.quantity
+  })
+  setTotalPrice(totalPrice);
+
+}
  useEffect(()=>{
+  UpdateTotalPrice(),
   setCartData(CartItems)
-  },[CartItems])
+  },[CartItems,UpdateTotalPrice])
 
 
   const Items = ({title, url, description, price, item}) => (
@@ -34,7 +44,9 @@ const dispatch = useDispatch()
         <Text style={{}}>{description.slice(0,56)+ '......'}</Text>
       </View>
       <View style={{justifyContent:'space-between',flexDirection:"row"}}>
-      <Text style={{color:"black",fontSize:20}}>{price}$</Text>
+        <View style={{flexDirection:"row"}}><Text style={{color:"black",fontSize:20,marginRight:30}}>{item.quantity * price}$</Text>
+        <Text style={{color:"black",fontSize:20}}>Qnt : {item.quantity}</Text></View>
+      
      <Button color={'error'} buttonStyle={{marginBottom:10,marginRight:10}} onPress={()=>RemoveITemFromCart(item)}>remove</Button>
       </View>
       
@@ -56,7 +68,7 @@ const dispatch = useDispatch()
       }
       </ScrollView> 
       <View style={{backgroundColor:'white'}}>
-        <Button title={'Check Out'} buttonStyle={{backgroundColor:'orange', padding:20,margin:10, }}/>
+        <Button title={`${totalPrice}$ check out`} buttonStyle={{backgroundColor:'orange', padding:20,margin:10, }}/>
       </View>
       </>
       
