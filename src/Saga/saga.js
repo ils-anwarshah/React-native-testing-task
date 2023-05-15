@@ -1,20 +1,18 @@
 import {takeEvery} from 'redux-saga/effects'
+import axios from 'axios';
 
-async function* FetchUserData(action){
 
-    try{
-        let url = 'https://jsonplaceholder.typicode.com/users'
-        let result = await fetch(url)
-        result = await result.json()
-        yield put({type:"USER_FETCH_SUCCEEDED", payload:result})
-    }
-    catch(e){
-        yield put({type:"USER_FETCH_FAILED",payload:result})
-    }
+function* Photos(){
+    const url = "https://jsonplaceholder.typicode.com/photos"
+    axios.get(url)
+    .then(res=>{
+        console.log(res)
+    })
+    
+}
+function* FetchUserData(){
+    yield console.log("Hello I am SAGA PAGA");
 }
 
-function* MainSaga(){
-    yield takeEvery('USER_FETCH_REQUEST', FetchUserData)
-}
 
-export default MainSaga
+export { FetchUserData,Photos}
