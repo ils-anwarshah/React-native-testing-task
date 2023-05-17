@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from 'redux-saga'
 import reducer from "../reducer/rootReducer";
-import { Photos, FetchUserData } from "../../Saga/saga";
+import FetchPhotos from "../../Saga/saga";
 
 const sagaMiddleware = createSagaMiddleware();
 const store=configureStore({
@@ -10,7 +10,7 @@ const store=configureStore({
 }
     
 );
-    sagaMiddleware.run(Photos)
+    sagaMiddleware.run(FetchPhotos)
 
 
 export default store ;

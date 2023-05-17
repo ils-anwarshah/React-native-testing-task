@@ -36,5 +36,3 @@ export default function CartItemReducer(state = initialState,action){
             return state
     }
 }
-
-(item)=> item.index === action.payload.index

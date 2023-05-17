@@ -9,6 +9,7 @@ import Cart from './ShoppingPage';
 import { Avatar } from '@rneui/themed';
 import { Icon } from '@rneui/base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PhotoScreen from './PhotoScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -67,6 +68,7 @@ const DrawerContents=(props)=>{
         <Drawer.Screen name="Home" component={TabContainer} options={{headerShown:false}}/>
         <Drawer.Screen name="profile" component={Profile} />
         <Drawer.Screen name="Posts" component={FetchDataUsingMap} />
+        <Drawer.Screen name="photos" component={PhotoScreen}/>
         <Drawer.Screen name="setting" component={Setting} />
         
       </Drawer.Navigator>
